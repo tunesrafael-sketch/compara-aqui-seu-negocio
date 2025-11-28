@@ -1,12 +1,9 @@
 import { GoogleGenAI } from "@google/genai";
 import { BenchmarkResult, Competitor, GroundingChunk } from "../types";
 
-const processEnvApiKey = process.env.API_KEY;
-if (!processEnvApiKey) {
-  console.error("API_KEY is missing in the environment.");
-}
-
-const ai = new GoogleGenAI({ apiKey: processEnvApiKey || "" });
+// Fix: Use process.env.API_KEY directly in the constructor as per guidelines.
+// Do not perform manual checks or logging for the API key.
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const analyzeCompetitors = async (
   businessName: string,
